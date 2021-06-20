@@ -1,0 +1,30 @@
+﻿@model IEnumerable<application_development.Models.Staff>
+
+<h2>All Staff</h2>
+
+
+@Html.ActionLink("Create New Staff", "CreateStaff", null, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">username</th>
+            <th scope="col">staff name</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var staff in Model)
+            {
+                <tr>
+                    <td>@staff.UserName</td>
+                    <td>@staff.StaffName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditStaff", new { Id = staff.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteStaff", new { Id = staff.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

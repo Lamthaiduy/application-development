@@ -1,0 +1,30 @@
+﻿@model IEnumerable<application_development.Models.Trainer>
+
+<h2>All Trainer</h2>
+
+@Html.ActionLink("Create New Trainer", "CreateTrainer", null, new {@class = "btn btn-primary"})
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">username</th>
+            <th scope="col">trainer name</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var trainer in Model)
+                        {
+                            <tr>
+                                <td>@trainer.UserName</td>
+                                <td>@trainer.TrainerName</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditTrainer", new { Id = trainer.Id }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "DeleteTrainer", new { Id = trainer.Id }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        } 
+            }
+    </tbody>
+</table>
+
