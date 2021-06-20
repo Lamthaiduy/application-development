@@ -156,5 +156,33 @@ namespace application_development.Controllers
             ChangePasswordSuccess,
             Error
         }
+
+        // manage trainer profile
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AllTrainer()
+        {
+            return View(_context.Trainers.ToList());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditTrainerProfile(string Id)
+        {
+            return View(_context.Trainers.SingleOrDefault(t =>  t.Id == Id));
+        }
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditTrainerProfile(Trainer model)
+        {
+            var trainer = _context.Trainers.SingleOrDefault(t => t.Id == model.Id);
+            trainer.TrainerName = model.TrainerName;
+            trainer.Type = model.Type;
+            trainer.WorkPlace = model.WorkPlace;
+            trainer.PhoneNumber = model.PhoneNumber;
+            trainer.Email = model.Email;
+            _context.SaveChanges();
+            return RedirectToAction("AllTrainer");
+        }
     }
 }
