@@ -56,7 +56,7 @@ namespace application_development
                 RequiredLength = 1,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
-                RequireLowercase = true,
+                RequireLowercase = false,
                 RequireUppercase = false,
             };
 

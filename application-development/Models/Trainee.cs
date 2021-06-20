@@ -11,7 +11,7 @@ namespace application_development.Models
         public int Age { get; set; }
         public string DateOfBirth { get; set; }
         public string Education { get; set; }
-        public string Pogramming { get; set; }
+        public string Programming { get; set; }
         public string TOEICscore { get; set; }
         public string Exprience_details { get; set; }
         public string Department { get; set; }

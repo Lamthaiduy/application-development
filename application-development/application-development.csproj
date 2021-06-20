@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,13 +180,18 @@
     <Compile Include="Migrations\202106190942395_add-models.designer.cs">
       <DependentUpon>202106190942395_add-models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106200715399_fix-trainee.cs" />
+    <Compile Include="Migrations\202106200715399_fix-trainee.designer.cs">
+      <DependentUpon>202106200715399_fix-trainee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModel\EditUserPassword.cs" />
+    <Compile Include="ViewModel\ManageViewModels.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trainee.cs" />
     <Compile Include="Models\TraineeCourse.cs" />
@@ -194,6 +200,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\CreateStaff.cs" />
+    <Compile Include="ViewModel\CreateTrainee.cs" />
     <Compile Include="ViewModel\CreateTrainer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +265,10 @@
     <Content Include="Views\Admin\AllStaff.cshtml" />
     <Content Include="Views\Admin\CreateStaff.cshtml" />
     <Content Include="Views\Admin\EditStaff.cshtml" />
+    <Content Include="Views\Staff\AllTrainee.cshtml" />
+    <Content Include="Views\Staff\CreateTrainee.cshtml" />
+    <Content Include="Views\Staff\EditTrainee.cshtml" />
+    <Content Include="Views\Staff\ChangeTraineePwd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -278,6 +289,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106190942395_add-models.resx">
       <DependentUpon>202106190942395_add-models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106200715399_fix-trainee.resx">
+      <DependentUpon>202106200715399_fix-trainee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
