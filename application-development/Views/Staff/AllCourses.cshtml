@@ -1,0 +1,33 @@
+﻿@model IEnumerable<application_development.Models.Course>
+
+<h2>All Courses</h2>
+
+@Html.ActionLink("Create New Course", "CreateCourse", null, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var course in Model)
+            {
+                <tr>
+                    <td scope="row">@course.Id</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.CourseDescription</td>
+                    <td>@course.Category.CategoryName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCourse", new { Id = course.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteCourse", new { Id = course.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

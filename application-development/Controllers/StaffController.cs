@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using application_development.ViewModel;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace application_development.Controllers
 {
@@ -185,6 +186,7 @@ namespace application_development.Controllers
             return RedirectToAction("AllTrainer");
         }
 
+        //manage categories
         [HttpGet]
         [Authorize(Roles = "Staff")]
         public ActionResult AllCategories()
@@ -232,6 +234,66 @@ namespace application_development.Controllers
             _context.Categories.Remove(_context.Categories.SingleOrDefault(t => t.Id == Id));
             _context.SaveChanges();
             return RedirectToAction("AllCategories");
+        }
+        //manage courses
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AllCourses()
+        {
+            return View(_context.Courses.Include(t => t.Category).ToList());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult CreateCourse()
+        {
+            var model = new CourseCategory()
+            {
+                Categories = _context.Categories.ToList()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult CreateCourse(CourseCategory model)
+        {
+            _context.Courses.Add(model.Course);
+            _context.SaveChanges();
+            return RedirectToAction("AllCourses");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditCourse(int Id)
+        {
+            var course = _context.Courses.Include(t => t.Category).SingleOrDefault(t => t.Id == Id);
+            var model = new CourseCategory()
+            {
+                Categories = _context.Categories.ToList(),
+                Course = course,
+            };
+            return View(model);
+        }
+
+        [Authorize(Roles = "Staff")]
+        [HttpPost]
+        public ActionResult EditCourse(CourseCategory model)
+        {
+            var course = _context.Courses.SingleOrDefault(t => t.Id == model.Course.Id);
+            course.CategoryId = model.Course.CategoryId;
+            course.CourseName = model.Course.CourseName;
+            course.CourseDescription = model.Course.CourseDescription;
+            _context.SaveChanges();
+            return RedirectToAction("AllCourses");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult DeleteCourse(int Id)
+        {
+            _context.Courses.Remove(_context.Courses.SingleOrDefault(t => t.Id == Id));
+            _context.SaveChanges();
+            return RedirectToAction("AllCourses");
         }
     }
 }
