@@ -184,6 +184,10 @@
     <Compile Include="Migrations\202106200715399_fix-trainee.designer.cs">
       <DependentUpon>202106200715399_fix-trainee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106200839356_add-filed.cs" />
+    <Compile Include="Migrations\202106200839356_add-filed.designer.cs">
+      <DependentUpon>202106200839356_add-filed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -272,6 +276,9 @@
     <Content Include="Views\Admin\ChangeUserPassword.cshtml" />
     <Content Include="Views\Staff\AllTrainer.cshtml" />
     <Content Include="Views\Staff\EditTrainerProfile.cshtml" />
+    <Content Include="Views\Staff\AllCategories.cshtml" />
+    <Content Include="Views\Staff\CreateCategory.cshtml" />
+    <Content Include="Views\Staff\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106200715399_fix-trainee.resx">
       <DependentUpon>202106200715399_fix-trainee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106200839356_add-filed.resx">
+      <DependentUpon>202106200839356_add-filed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

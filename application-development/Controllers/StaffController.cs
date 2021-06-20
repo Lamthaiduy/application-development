@@ -184,5 +184,54 @@ namespace application_development.Controllers
             _context.SaveChanges();
             return RedirectToAction("AllTrainer");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AllCategories()
+        {
+            return View(_context.Categories.ToList());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult CreateCategory(Category model)
+        {
+            _context.Categories.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("AllCategories");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditCategory(int Id)
+        {
+            return View(_context.Categories.SingleOrDefault(t => t.Id == Id));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult EditCategory(Category model)
+        {
+            var cateogry = _context.Categories.SingleOrDefault(t => t.Id == model.Id);
+            cateogry.CategoryName = model.CategoryName;
+            cateogry.Description = model.Description;
+            _context.SaveChanges();
+            return RedirectToAction("AllCategories");
+        }
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult DeleteCategory(int Id)
+        {
+            _context.Categories.Remove(_context.Categories.SingleOrDefault(t => t.Id == Id));
+            _context.SaveChanges();
+            return RedirectToAction("AllCategories");
+        }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<application_development.Models.Category>
+
+<h2>All Categories</h2>
+
+
+@Html.ActionLink("Create New Category", "CreateCategory", null, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Category Description</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var category in Model)
+            {
+                <tr>
+                    <td scope="row">@category.Id</td>
+                    <td>@category.CategoryName</td>
+                    <td>@category.Description</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCategory", new { Id = category.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteCategory", new { Id = category.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
