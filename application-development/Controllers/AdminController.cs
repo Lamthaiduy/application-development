@@ -160,5 +160,45 @@ namespace application_development.Controllers
             _context.SaveChanges();
             return RedirectToAction("AllStaff");
         }
+
+        [Authorize(Roles ="Admin")]
+        public ActionResult ChangeUserPassword(string Id)
+        {
+            EditUserPassword model = new EditUserPassword()
+            {
+                Id = Id,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> ChangeUserPassword(EditUserPassword model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await UserManager.ChangePasswordAsync(model.Id, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+               if(_context.Trainers.SingleOrDefault(t => t.Id == model.Id) != null)
+                {
+                    return RedirectToAction("AllTrainer", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+               else {
+                    return RedirectToAction("AllStaff", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+            }
+            AddErrors(result);
+            return View(model);
+        }
+        public enum ManageMessageId
+        {
+            ChangePasswordSuccess,
+            Error
+        }
+
     }
 }

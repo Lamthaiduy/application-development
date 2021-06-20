@@ -20,6 +20,7 @@
                     <td>@staff.UserName</td>
                     <td>@staff.StaffName</td>
                     <td>
+                        @Html.ActionLink("Change Password", "ChangeUserPassword", new { Id = staff.Id }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Edit", "EditStaff", new { Id = staff.Id }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Delete", "DeleteStaff", new { Id = staff.Id }, new { @class = "btn btn-danger" })
                     </td>

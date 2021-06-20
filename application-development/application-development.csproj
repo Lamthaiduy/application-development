@@ -269,6 +269,7 @@
     <Content Include="Views\Staff\CreateTrainee.cshtml" />
     <Content Include="Views\Staff\EditTrainee.cshtml" />
     <Content Include="Views\Staff\ChangeTraineePwd.cshtml" />
+    <Content Include="Views\Admin\ChangeUserPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

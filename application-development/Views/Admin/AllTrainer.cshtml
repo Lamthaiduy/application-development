@@ -19,6 +19,7 @@
                                 <td>@trainer.UserName</td>
                                 <td>@trainer.TrainerName</td>
                                 <td>
+                                    @Html.ActionLink("Change Password", "ChangeUserPassword", new { Id = trainer.Id }, new { @class = "btn btn-primary" })
                                     @Html.ActionLink("Edit", "EditTrainer", new { Id = trainer.Id }, new { @class = "btn btn-primary" })
                                     @Html.ActionLink("Delete", "DeleteTrainer", new { Id = trainer.Id }, new { @class = "btn btn-danger" })
                                 </td>
