@@ -295,5 +295,73 @@ namespace application_development.Controllers
             _context.SaveChanges();
             return RedirectToAction("AllCourses");
         }
+
+        //manage trainee - course relationship
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AllTraineeCourse(string Id)
+        {
+            ViewBag.TraineeId = Id;
+            return View(_context.TraineeCourses.Where(t => t.TraineeId == Id).Include(t => t.Trainee).Include(t => t.Course).ToList());
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AssignCourseToTrainee(string Id)
+        {
+            ViewBag.TraineeId = Id;
+            var model = new AssignTraineeCourse()
+            {
+                TraineeId = Id,
+                Courses = _context.Courses.ToList()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult AssignCourseToTrainee(AssignTraineeCourse model)
+        {
+            var traineeCourse = new TraineeCourse();
+            traineeCourse.TraineeId = model.TraineeId;
+            traineeCourse.CourseId = model.CourseId;
+            _context.TraineeCourses.Add(traineeCourse);
+            _context.SaveChanges();
+            return RedirectToAction("AllTraineeCourse", new { Id = model.TraineeId });
+        }
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult ReassignTraineeCourse(int Id)
+        {
+            var traineeCourse = _context.TraineeCourses.Include(t => t.Trainee).Include(t => t.Course).SingleOrDefault(t => t.Id == Id);
+            var model = new AssignTraineeCourse()
+            {
+                TraineeId = traineeCourse.TraineeId,
+                Courses = _context.Courses.ToList(),
+                TraineeCourse = traineeCourse,
+            };
+            ViewBag.TraineeId = traineeCourse.TraineeId;
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Staff")]
+        public ActionResult ReassignTraineeCourse(AssignTraineeCourse model)
+        {
+            var traineeCourse = _context.TraineeCourses.SingleOrDefault(t => t.Id == model.TraineeCourse.Id);
+            traineeCourse.CourseId = model.CourseId;
+            _context.SaveChanges();
+            return RedirectToAction("AllTraineeCourse", new { Id = traineeCourse.TraineeId });
+        }
+        [HttpGet]
+        [Authorize(Roles = "Staff")]
+        public ActionResult RemoveTraineeCourse(int Id)
+        {
+            var traineeCourse = _context.TraineeCourses.SingleOrDefault(t => t.Id == Id);
+            var traineeId = traineeCourse.TraineeId;
+            _context.TraineeCourses.Remove(traineeCourse);
+            _context.SaveChanges();
+            return RedirectToAction("AllTraineeCourse", new { Id = traineeId });
+        }
     }
 }
