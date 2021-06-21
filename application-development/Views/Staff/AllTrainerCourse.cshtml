@@ -1,0 +1,31 @@
+﻿@model IEnumerable<application_development.Models.TrainerCourse>
+
+<h2>All Trainer Course</h2>
+
+@Html.ActionLink("Assign Course To Trainer", "AssignCourseToTrainer", new { Id = ViewBag.TrainerId }, new { @class = "btn btn-primary" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Trainer Name</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var trainerCourse in Model)
+            {
+                <tr>
+                    <td scope="row">@trainerCourse.Id</td>
+                    <td>@trainerCourse.Trainer.TrainerName</td>
+                    <td>@trainerCourse.Course.CourseName</td>
+                    <td>
+                        @Html.ActionLink("Reassign", "ReassignTrainerCourse", new { Id = trainerCourse.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "RemoveTrainerCourse", new { Id = trainerCourse.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

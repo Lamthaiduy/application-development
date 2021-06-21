@@ -17,6 +17,7 @@
                     <td>@trainer.TrainerName</td>
                     <td>
                         @Html.ActionLink("Edit", "EditTrainerProfile", new { Id = trainer.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("All Course of Trainer", "AllTrainerCourse", new { Id = trainer.Id }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }

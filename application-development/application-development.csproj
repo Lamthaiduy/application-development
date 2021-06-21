@@ -195,6 +195,7 @@
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="ViewModel\AssignTraineeCourse.cs" />
+    <Compile Include="ViewModel\AssignTrainerCourse.cs" />
     <Compile Include="ViewModel\CourseCategory.cs" />
     <Compile Include="ViewModel\EditUserPassword.cs" />
     <Compile Include="ViewModel\ManageViewModels.cs" />
@@ -287,6 +288,9 @@
     <Content Include="Views\Staff\AllTraineeCourse.cshtml" />
     <Content Include="Views\Staff\AssignCourseToTrainee.cshtml" />
     <Content Include="Views\Staff\ReassignTraineeCourse.cshtml" />
+    <Content Include="Views\Staff\AllTrainerCourse.cshtml" />
+    <Content Include="Views\Staff\AssignCourseToTrainer.cshtml" />
+    <Content Include="Views\Staff\ReassignTrainerCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
