@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,6 +292,11 @@
     <Content Include="Views\Staff\AllTrainerCourse.cshtml" />
     <Content Include="Views\Staff\AssignCourseToTrainer.cshtml" />
     <Content Include="Views\Staff\ReassignTrainerCourse.cshtml" />
+    <Content Include="Views\User\AllTraineeCourses.cshtml" />
+    <Content Include="Views\User\AllCourses.cshtml" />
+    <Content Include="Views\User\UpdateTraineeAccount.cshtml" />
+    <Content Include="Views\User\AllTrainerCourses.cshtml" />
+    <Content Include="Views\User\UpdateTrainerAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

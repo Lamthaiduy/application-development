@@ -1,0 +1,29 @@
+﻿@model IEnumerable<application_development.Models.TraineeCourse>
+
+<h2>All Trainee Courses</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Trainee Name</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Categories</th>
+            <th scope="col">Course Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach (var traineeCourse in Model)
+            {
+                <tr>
+                    <td scope="row">@traineeCourse.Id</td>
+                    <td>@traineeCourse.Trainee.TraineeName</td>
+                    <td>@traineeCourse.Course.CourseName</td>
+                    <td>@traineeCourse.Course.Category.CategoryName</td>
+                    <td>@traineeCourse.Course.CourseDescription</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

@@ -34,6 +34,17 @@
                         <li>@Html.ActionLink("All Categories", "AllCategories", "Staff")</li>
                         <li>@Html.ActionLink("All Courses", "AllCourses", "Staff")</li>
                     }
+                    @if (Request.IsAuthenticated && User.IsInRole("Trainee"))
+                    {
+                        <li>@Html.ActionLink("All Courses Related", "AllTraineeCourses", "User")</li>
+                        <li>@Html.ActionLink("All Courses", "AllCourses", "User")</li>
+                        <li>@Html.ActionLink("Update profile", "UpdateTraineeAccount", "User")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Trainer"))
+                    {
+                        <li>@Html.ActionLink("All Courses Related", "AllTrainerCourses", "User")</li>
+                        <li>@Html.ActionLink("Update profile", "UpdateTrainerAccount", "User")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
