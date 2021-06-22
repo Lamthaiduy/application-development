@@ -61,9 +61,13 @@ namespace application_development.Controllers
         // Staff manage trainee
 
         [Authorize(Roles ="Staff")]
-        public ActionResult AllTrainee()
+        public ActionResult AllTrainee(string name)
         {
-            return View(_context.Trainees.ToList());
+            if(string.IsNullOrWhiteSpace(name))
+            {
+                return View(_context.Trainees.ToList());
+            }
+            return View(_context.Trainees.Where(t => t.TraineeName.Contains(name)).ToList());
         }
 
         [HttpGet]
@@ -179,11 +183,14 @@ namespace application_development.Controllers
         }
 
         //manage categories
-        [HttpGet]
         [Authorize(Roles = "Staff")]
-        public ActionResult AllCategories()
+        public ActionResult AllCategories(string name)
         {
-            return View(_context.Categories.ToList());
+            if(string.IsNullOrWhiteSpace(name))
+            {
+                return View(_context.Categories.ToList());
+            }
+            return View(_context.Categories.Where(t => t.CategoryName.Contains(name)).ToList());
         }
 
         [HttpGet]
@@ -228,11 +235,14 @@ namespace application_development.Controllers
             return RedirectToAction("AllCategories");
         }
         //manage courses
-        [HttpGet]
         [Authorize(Roles = "Staff")]
-        public ActionResult AllCourses()
+        public ActionResult AllCourses(string name)
         {
-            return View(_context.Courses.Include(t => t.Category).ToList());
+           if(string.IsNullOrWhiteSpace(name))
+            {
+                return View(_context.Courses.Include(t => t.Category).ToList());
+            }
+            return View(_context.Courses.Where(t => t.CourseName.Contains(name)).Include(t => t.Category).ToList());
         }
 
         [HttpGet]

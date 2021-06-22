@@ -5,6 +5,15 @@
 
 @Html.ActionLink("Create New Category", "CreateCategory", null, new { @class = "btn btn-primary" })
 
+@using (Html.BeginForm("AllCategories", "Staff"))
+{
+    <div class="form-group">
+        @Html.Label("Search Category by Name")
+        @Html.TextBox("name", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search by Name</button>
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>

@@ -7,6 +7,15 @@
 
 @Html.ActionLink("Create New Trainee", "CreateTrainee", null, new { @class = "btn btn-primary" })
 
+@using (Html.BeginForm("AllTrainee", "Staff"))
+{
+    <div class="form-group">
+        @Html.Label("Search Trainee by Name")
+        @Html.TextBox("name", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search by Name</button>
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
